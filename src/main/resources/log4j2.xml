@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+	<Properties>
+		<!-- <Property name="LOG_PATTERN">%d{dd-MM-yyyy'T'HH:mm:ss.SSSZ} %p %m%n</Property> -->
+		<!-- https://www.tutorialspoint.com/log4j/log4j_patternlayout.htm -->
+		<Property name="LOG_PATTERN">%d{dd-MM-yyyy'T'HH:mm:ss.SSSZ}-%x-%-5p-%-10c:%m%n</Property>
+		<Property name="APP_LOG_ROOT">D:\</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+		<RollingFile name="fileLog"
+			fileName="${APP_LOG_ROOT}/empdetailsms/application.log"
+			filePattern="${APP_LOG_ROOT}/empdetailsms/application-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="19500KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="1" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="LoggingApp" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="fileLog" />
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="fileLog" />
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>
