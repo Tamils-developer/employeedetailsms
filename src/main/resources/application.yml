@@ -1,0 +1,19 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /empdetailsms
+spring:
+  datasource:
+    password: root
+    url: jdbc:mysql://localhost:3306/dev_local
+    username: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties: 
+      hibernate:
+        format_sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
